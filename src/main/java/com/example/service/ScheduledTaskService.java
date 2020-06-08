@@ -82,7 +82,7 @@ public class ScheduledTaskService {
 		}
 	}
 
-	// びん・かん・ペットボトル類ごみのリマインドをスケジューリング(毎週金曜日)
+	// 雨の予報であれば傘を持っていくようにリマインドをスケジューリング（毎日6時）
 	@Scheduled(cron = "0 0 6 * * *", zone = "Asia/Tokyo")
 	public void executeRainRemind() {
 		try {
