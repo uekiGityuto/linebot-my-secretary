@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.example.api.PushConfirmController;
+import com.example.api.PushForecastController;
+import com.example.api.PushGarbageController;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,8 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 public class ScheduledTaskService {
 
 	@Autowired
-	PushConfirmController pushConfirmController;
-
+	PushGarbageController pushGarbageController;
+	@Autowired
+	PushForecastController pushForecastController;
+	
 	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
 	// cron書式(<second> <minute> <hour> <day-of-month> <month> <day-of-week>　<year>)※<year>は省略可
@@ -29,7 +33,7 @@ public class ScheduledTaskService {
 	public void executeBurnableGarbageRemind() {
 		try {
 			// pushする処理を呼び出す
-			pushConfirmController.burnableGarbageRemind();
+			pushGarbageController.burnableGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}
@@ -41,7 +45,7 @@ public class ScheduledTaskService {
 	public void executePaperGarbageRemind() {
 		try {
 			// pushする処理を呼び出す
-			pushConfirmController.paperGarbageRemind();
+			pushGarbageController.paperGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}
@@ -53,7 +57,7 @@ public class ScheduledTaskService {
 	public void executeBottleGarbageRemind() {
 		try {
 			// pushする処理を呼び出す
-			pushConfirmController.bottleGarbageRemind();
+			pushGarbageController.bottleGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}
@@ -70,12 +74,24 @@ public class ScheduledTaskService {
 		if ((day >= 1 && day <= 7) || (day >= 15 && day <= 21)) {
 			try {
 				// pushする処理を呼び出す
-				pushConfirmController.metalGarbageRemind();
+				pushGarbageController.metalGarbageRemind();
 			} catch (URISyntaxException e) {
 				log.error("{}", e);
 			}
 			log.info("cron executed : " + sdf.format(new Date()));
 		}
+	}
+
+	// びん・かん・ペットボトル類ごみのリマインドをスケジューリング(毎週金曜日)
+	@Scheduled(cron = "0 0 6 * * *", zone = "Asia/Tokyo")
+	public void executeRainRemind() {
+		try {
+			// pushする処理を呼び出す
+			pushForecastController.rainRemind();
+		} catch (MalformedURLException e) {
+			log.error("{}", e);
+		}
+		log.info("cron executed : " + sdf.format(new Date()));
 	}
 
 }

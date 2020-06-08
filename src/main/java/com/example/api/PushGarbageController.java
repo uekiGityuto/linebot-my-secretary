@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.BasicInfo;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.action.MessageAction;
@@ -17,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-public class PushConfirmController {
+public class PushGarbageController {
 
-	private final String CHANNEL_TOKEN = "vB6ScGPADYkuJbvrnb8AIQJI8s3erU1hM3HlSPFW1WpQ1R9Ei2253YpmisiQ7uw9B79j8Aq3SLJ2FxsJ9NsoNl4dobtqvM56stHkQvULORwOhnIpjGBLs2i4IbFHKrSWDWSX6R++/PxWrsy+cmrWowdB04t89/1O/w1cDnyilFU=";
-	private final String USER_ID = "U7f48a54dbb96dcf79ee9378dee123d90";
+	private String CHANNEL_TOKEN = BasicInfo.CHANNEL_TOKEN;
+	private String USER_ID = BasicInfo.USER_ID;
 	LineMessagingClient client = LineMessagingClient.builder(CHANNEL_TOKEN).build();
 
 	// 燃やすゴミのリマインドをpush

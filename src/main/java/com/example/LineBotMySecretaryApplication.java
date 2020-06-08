@@ -11,5 +11,4 @@ public class LineBotMySecretaryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LineBotMySecretaryApplication.class, args);
 	}
-
 }

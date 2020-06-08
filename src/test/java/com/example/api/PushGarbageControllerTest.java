@@ -5,21 +5,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest
-public class PushConfirmControllerTest {
+public class PushGarbageControllerTest {
 
-	PushConfirmController pushConfirmController = new PushConfirmController();
+	@Autowired
+	PushGarbageController pushGarbageController;
+	
 	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
 	@Test
 	public void TestBurnableGarbageRemind() {
 		try {
-			pushConfirmController.burnableGarbageRemind();
+			pushGarbageController.burnableGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}
@@ -29,7 +32,7 @@ public class PushConfirmControllerTest {
 	@Test
 	public void TestRecyclableGarbageRemind() {
 		try {
-			pushConfirmController.paperGarbageRemind();
+			pushGarbageController.paperGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}
@@ -39,7 +42,7 @@ public class PushConfirmControllerTest {
 	@Test
 	public void TestBottleGarbageRemind() {
 		try {
-			pushConfirmController.bottleGarbageRemind();
+			pushGarbageController.bottleGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}
@@ -49,7 +52,7 @@ public class PushConfirmControllerTest {
 	@Test
 	public void TestMetalGarbageRemind() {
 		try {
-			pushConfirmController.metalGarbageRemind();
+			pushGarbageController.metalGarbageRemind();
 		} catch (URISyntaxException e) {
 			log.error("{}", e);
 		}

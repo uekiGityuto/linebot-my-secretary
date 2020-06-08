@@ -52,6 +52,10 @@
 			<artifactId>line-bot-spring-boot</artifactId>
 			<version>3.6.0</version>
 		</dependency>
+		<dependency>
+    		<groupId>com.google.code.gson</groupId>
+    		<artifactId>gson</artifactId>
+		</dependency>
 		
 	</dependencies>
 
