@@ -19,17 +19,16 @@ public class WebhookController {
 	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
 		log.info("event: {}", event);
 
-		// 入力されたテキストの取得
+		// 入力されたテキストを取得する
 		TextMessageContent content = event.getMessage();
-		// String replyToken = event.getReplyToken();
 		String text = content.getText();
 
-		// 入力されたテキストの内容に応じて応答
+		// 入力されたテキストの内容に応じて応答する
 		switch (text) {
-		case "はい":
+		case "ゴミ捨て完了！":
 			log.info("Returns echo message:さっすがー！");
 			return new TextMessage("さっすがー！");
-		case "いいえ":
+		case "まだゴミ捨てやってない、、":
 			log.info("Returns echo message:捨てにいきましょー！");
 			return new TextMessage("捨てにいきましょー！");
 		default:
