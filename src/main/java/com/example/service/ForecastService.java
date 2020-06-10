@@ -47,6 +47,7 @@ public class ForecastService {
 		Forecast forecast = gson.fromJson(jsonData, Forecast.class);
 
 		// 現在～15時間後までの3時間毎の予報を取り出し、雨の予報があればTRUEを返す
+		// iconの値の意味はOpenWeatherMapの公式HP参照
 		for (int i = 0; i < 5; i++) {
 			long epoch = forecast.list.get(i).dt;
 			log.info("日時:{}", Epoch2Date.getDateFromEpoch(epoch));
